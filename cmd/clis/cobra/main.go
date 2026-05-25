@@ -1,15 +1,17 @@
 /*
 Copyright © 2026 NAME HERE <EMAIL ADDRESS>
-
 */
 package main
 
 import (
-	"github.com/markirish/go-clis/clis/cobra/cmd"
-	_ "github.com/markirish/go-clis/clis/cobra/cmd/list"
-	_ "github.com/markirish/go-clis/clis/cobra/cmd/list/pods"
+	"os"
+
+	"github.com/markirish/go-clis/cmd/clis/cobra/cmd"
 )
 
 func main() {
-	cmd.Execute()
+	rootCmd := cmd.NewRootCmd()
+	if err := rootCmd.Execute(); err != nil {
+		os.Exit(1)
+	}
 }

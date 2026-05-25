@@ -1,4 +1,4 @@
-module github.com/markirish/go-clis/clis/cobra
+module github.com/markirish/go-clis/cmd/clis/cobra
 
 go 1.26.2
 
@@ -11,4 +11,4 @@ require (
 // require github.com/markirish/go-clis/internal/clis/cobra/cmd v0.0.0
 
 require github.com/markirish/go-clis/internal/app v0.0.0
-replace github.com/markirish/go-clis/internal/app => ../../app
+replace github.com/markirish/go-clis/internal/app => ../../../internal/app

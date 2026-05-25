@@ -6,8 +6,26 @@ package cmd
 import (
 	"os"
 
+	"github.com/markirish/go-clis/cmd/clis/cobra/cmd/list"
+	"github.com/markirish/go-clis/internal/app/options"
 	"github.com/spf13/cobra"
 )
+
+func NewRootCmd() *cobra.Command {
+	rootOpts := &options.GlobalOptions{}
+
+	cmd := &cobra.Command{
+		Use:   "go-clis",
+		Short: "Testing Cobra CLI patterns",
+	}
+
+	flags := cmd.PersistentFlags()
+	flags.BoolVar(&rootOpts.Verbose, "verbose", false, "Enable verbose output")
+
+	cmd.AddCommand(list.NewListCmd(rootOpts))
+
+	return cmd
+}
 
 // RootCmd represents the base command when called without any subcommands
 var RootCmd = &cobra.Command{

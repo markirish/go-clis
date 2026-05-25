@@ -1,9 +1,9 @@
-package app
+package options
 
 type GlobalOptions struct {
-	Namespace     *string
-	Output        *string
-	Timeout       *uint
-	GlobalTimeout *uint
-	Verbose       *bool
+	Namespace     string
+	Output        string
+	Timeout       uint
+	GlobalTimeout uint
+	Verbose       bool
 }
