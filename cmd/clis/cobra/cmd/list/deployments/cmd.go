@@ -8,7 +8,7 @@ import (
 )
 
 func NewListDeploymentsCmd(
-	globalOptions *GlobalOptions,
+	globalOptions *GlobalCommandOptions,
 	listOptions *ListCommandOptions,
 ) *cobra.Command {
 	listDeploymentsOptions := ListDeploymentsCommandOptions{}

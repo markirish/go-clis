@@ -8,7 +8,7 @@ import (
 )
 
 func NewListNodesCmd(
-	globalOptions *options.GlobalOptions,
+	globalOptions *options.GlobalCommandOptions,
 	listOptions *options.ListCommandOptions,
 ) *cobra.Command {
 	listNodesOpts := &options.ListNodesCommandOptions{}
@@ -17,8 +17,11 @@ func NewListNodesCmd(
 		Use:   "nodes",
 		Short: "List nodes",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			fmt.Printf("Global options: %+v\n", globalOptions)
-			fmt.Printf("List options: %+v\n", listOptions)
+			// Now that we have all of the options bound, condense down into a single
+			// struct so we only have to deal with ListPodsCommandOptions
+			listNodesOpts.GlobalCommandOptions = *globalOptions
+			listNodesOpts.ListCommandOptions = *listOptions
+
 			fmt.Printf("Nodes options: %+v\n", listNodesOpts)
 			fmt.Printf("Args: %v\n", args)
 

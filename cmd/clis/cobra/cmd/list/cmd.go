@@ -1,16 +1,15 @@
 package list
 
 import (
-	"fmt"
-
 	. "github.com/markirish/go-clis/cmd/clis/cobra/cmd/list/pods"
 	. "github.com/markirish/go-clis/cmd/clis/cobra/cmd/list/services"
 	. "github.com/markirish/go-clis/internal/app/options"
 	"github.com/spf13/cobra"
 )
 
-func NewListCmd(globalOptions *GlobalOptions) *cobra.Command {
+func NewListCmd(globalOptions *GlobalCommandOptions) *cobra.Command {
 	listOpts := &ListCommandOptions{}
+	listOpts.GlobalCommandOptions = *globalOptions
 
 	cmd := &cobra.Command{
 		Use:   "list",
@@ -19,9 +18,6 @@ func NewListCmd(globalOptions *GlobalOptions) *cobra.Command {
 filters. You can use this command to view all resources or filter them based
 on specific criteria.`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			fmt.Printf("Running list with global options: %+v\n", globalOptions)
-			fmt.Printf("Running list with list options: %+v\n", listOpts)
-			fmt.Printf("Args: %v\n", args)
 			return nil
 		},
 	}

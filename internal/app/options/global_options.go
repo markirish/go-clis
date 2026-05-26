@@ -1,9 +1,11 @@
 package options
 
-type GlobalOptions struct {
+import "time"
+
+type GlobalCommandOptions struct {
 	Namespace     string
 	Output        string
-	Timeout       uint
-	GlobalTimeout uint
+	Timeout       time.Duration
+	GlobalTimeout time.Duration
 	Verbose       bool
 }

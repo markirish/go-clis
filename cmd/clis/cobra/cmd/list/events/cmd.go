@@ -8,7 +8,7 @@ import (
 )
 
 func NewListEventsCmd(
-	globalOptions *options.GlobalOptions,
+	globalOptions *options.GlobalCommandOptions,
 	listOptions *options.ListCommandOptions,
 ) *cobra.Command {
 	listEventsOpts := &options.ListEventsCommandOptions{}

@@ -11,22 +11,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func NewRootCmd() *cobra.Command {
-	rootOpts := &GlobalOptions{}
-
-	cmd := &cobra.Command{
-		Use:   "go-clis",
-		Short: "Testing Cobra CLI patterns",
-	}
-
-	flags := cmd.PersistentFlags()
-	flags.BoolVar(&rootOpts.Verbose, "verbose", false, "Enable verbose output")
-
-	cmd.AddCommand(list.NewListCmd(rootOpts))
-
-	return cmd
-}
-
 // RootCmd represents the base command when called without any subcommands
 var RootCmd = &cobra.Command{
 	Use:   "cobra",
@@ -61,4 +45,25 @@ func init() {
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
 	RootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+}
+
+func NewRootCmd() *cobra.Command {
+	rootOpts := &GlobalCommandOptions{}
+
+	cmd := &cobra.Command{
+		Use:   "go-clis",
+		Short: "Testing Cobra CLI patterns",
+	}
+
+	flags := cmd.PersistentFlags()
+
+	flags.BoolVar(&rootOpts.Verbose, "verbose", false, "Enable verbose output")
+	flags.StringVarP(&rootOpts.Namespace, "namespace", "n", "", "Filter output by namespace")
+	flags.StringVarP(&rootOpts.Output, "output", "o", "", "Output format")
+	flags.DurationVar(&rootOpts.Timeout, "timeout", 0, "Timeout for any individual request")
+	flags.DurationVar(&rootOpts.GlobalTimeout, "global-timeout", 0, "Timeout for the entire run")
+
+	cmd.AddCommand(list.NewListCmd(rootOpts))
+
+	return cmd
 }

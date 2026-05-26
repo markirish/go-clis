@@ -8,7 +8,7 @@ import (
 )
 
 func NewListServicesCmd(
-	globalOptions *GlobalOptions,
+	globalOptions *GlobalCommandOptions,
 	listOptions *ListCommandOptions,
 ) *cobra.Command {
 	listServicesOpts := &ListServicesCommandOptions{}
