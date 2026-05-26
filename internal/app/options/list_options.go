@@ -2,40 +2,42 @@ package options
 
 // `list` command options
 
+import (
+	. "github.com/markirish/go-clis/internal/pkg/pods"
+)
+
 type ListCommandOptions struct {
-	GlobalOptions GlobalOptions
-	Filter        string
-	SortBy        string
-	Watch         bool
-	Wide          bool
+	Filter string
+	SortBy string
+	Watch  bool
+	Wide   bool
 }
 
 type ListPodsCommandOptions struct {
-	ListCommandOptions  ListCommandOptions
 	Phase               string
 	Node                string
 	RestartsGreaterThan uint
 }
 
+func ListPodOptionsGenerator(globalOptions GlobalOptions, listOpts ListCommandOptions) ListPodOptions {
+	return ListPodOptions{}
+}
+
 type ListDeploymentsCommandOptions struct {
-	ListCommandOptions ListCommandOptions
-	Unavailable        bool
-	MinReplicas        uint
+	Unavailable bool
+	MinReplicas uint
 }
 
 type ListServicesCommandOptions struct {
-	ListCommandOptions ListCommandOptions
-	Type               string
+	Type string
 }
 
 type ListNodesCommandOptions struct {
-	ListCommandOptions ListCommandOptions
-	Node               string
-	NotReady           bool
+	Node     string
+	NotReady bool
 }
 
 type ListEventsCommandOptions struct {
-	ListCommandOptions ListCommandOptions
-	Type               string
-	Reason             string
+	Type   string
+	Reason string
 }

@@ -12,3 +12,6 @@ require (
 
 require github.com/markirish/go-clis/internal/app v0.0.0
 replace github.com/markirish/go-clis/internal/app => ../../../internal/app
+
+require github.com/markirish/go-clis/internal/pkg v0.0.0
+replace github.com/markirish/go-clis/internal/pkg => ../../../internal/pkg

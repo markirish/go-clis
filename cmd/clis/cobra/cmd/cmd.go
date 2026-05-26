@@ -7,12 +7,12 @@ import (
 	"os"
 
 	"github.com/markirish/go-clis/cmd/clis/cobra/cmd/list"
-	"github.com/markirish/go-clis/internal/app/options"
+	. "github.com/markirish/go-clis/internal/app/options"
 	"github.com/spf13/cobra"
 )
 
 func NewRootCmd() *cobra.Command {
-	rootOpts := &options.GlobalOptions{}
+	rootOpts := &GlobalOptions{}
 
 	cmd := &cobra.Command{
 		Use:   "go-clis",

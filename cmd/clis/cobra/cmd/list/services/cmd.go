@@ -1,4 +1,4 @@
-package pods
+package services
 
 import (
 	"fmt"
@@ -7,19 +7,19 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func NewListPodsCmd(
+func NewListServicesCmd(
 	globalOptions *GlobalOptions,
 	listOptions *ListCommandOptions,
 ) *cobra.Command {
-	listPodsOpts := &ListPodsCommandOptions{}
+	listServicesOpts := &ListServicesCommandOptions{}
 
 	cmd := &cobra.Command{
-		Use:   "pods",
-		Short: "List pods",
+		Use:   "services",
+		Short: "List services",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			fmt.Printf("Global options: %+v\n", globalOptions)
 			fmt.Printf("List options: %+v\n", listOptions)
-			fmt.Printf("Pods options: %+v\n", listPodsOpts)
+			fmt.Printf("Services options: %+v\n", listServicesOpts)
 			fmt.Printf("Args: %v\n", args)
 
 			return nil
@@ -28,9 +28,7 @@ func NewListPodsCmd(
 
 	flags := cmd.Flags()
 
-	flags.StringVar(&listPodsOpts.Phase, "phase", "", "Filter by pod phase")
-	flags.StringVar(&listPodsOpts.Node, "node", "", "Filter by node name")
-	flags.UintVar(&listPodsOpts.RestartsGreaterThan, "restarts-greater-than", 0, "Filter pods with restarts greater than the specified number")
+	flags.StringVar(&listServicesOpts.Type, "type", "", "Filter by service type")
 
 	return cmd
 }
