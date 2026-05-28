@@ -3,6 +3,7 @@ package pods
 import (
 	"fmt"
 
+	"github.com/markirish/go-clis/internal/app"
 	. "github.com/markirish/go-clis/internal/app/options"
 	"github.com/markirish/go-clis/internal/pkg/pods"
 	"github.com/spf13/cobra"
@@ -25,16 +26,17 @@ func NewListPodsCmd(
 			listPodsCommandOpts.ListCommandOptions = *listOptions
 			listPodsCommandOpts.GlobalCommandOptions = *globalOptions
 
-			fmt.Printf("Global options: %+v\n", globalOptions)
-			fmt.Printf("Pods options: %+v\n", listPodsCommandOpts)
-
 			listPodOptions := ListPodOptionsGenerator(*listPodsCommandOpts)
 
-			err := pods.ListPods(cmd.Context(), listPodOptions)
+			// TODO: Need to refactor from here and below, it should be a much
+			// more indirect call down to pkg
+			pods, err := pods.GetPods(cmd.Context(), listPodOptions)
 			if err != nil {
 				fmt.Println("TODO: Don't just print here, need to log, pass error to caller, etc. Fine for now though")
 				return err
 			}
+
+			app.PrintListPods(cmd.OutOrStdout(), pods, *listPodsCommandOpts)
 
 			return nil
 		},

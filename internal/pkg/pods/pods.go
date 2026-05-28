@@ -17,7 +17,7 @@ import (
 	_ "k8s.io/client-go/plugin/pkg/client/auth"
 )
 
-type ListPodOptions struct {
+type GetPodsOptions struct {
 	Namespace           string
 	Timeout             time.Duration
 	GlobalTimeout       time.Duration
@@ -35,7 +35,7 @@ type ListPodOptions struct {
 	// Wide   bool
 }
 
-func GetPods(ctx context.Context, options ListPodOptions) (*corev1.PodList, error) {
+func GetPods(ctx context.Context, options GetPodsOptions) (*corev1.PodList, error) {
 	// TODO: This is just a PoC! Will be refactored and functionality pulled out
 	// 1. Resolve kubeconfig path.
 	home, err := os.UserHomeDir()
@@ -89,39 +89,5 @@ func GetPods(ctx context.Context, options ListPodOptions) (*corev1.PodList, erro
 		return nil, fmt.Errorf("list pods: %w", err)
 	}
 
-	// 7. Print basic output.
-	// for _, pod := range podList.Items {
-
-	// 	uptime := "<unknown>"
-
-	// 	if pod.Status.StartTime != nil {
-	// 		uptime = formatAge(time.Since(pod.Status.StartTime.Time))
-	// 	}
-
-	// 	fmt.Printf("%-24s %-48s %-12s %-12s %-16s\n",
-	// 		pod.Namespace,
-	// 		pod.Name,
-	// 		uptime,
-	// 		string(pod.Status.Phase),
-	// 		pod.Spec.NodeName,
-	// 	)
-	// }
-
 	return podList, nil
-}
-
-func formatAge(d time.Duration) string {
-	if d < time.Minute {
-		return fmt.Sprintf("%ds", int(d.Seconds()))
-	}
-
-	if d < time.Hour {
-		return fmt.Sprintf("%dm", int(d.Minutes()))
-	}
-
-	if d < 24*time.Hour {
-		return fmt.Sprintf("%dh", int(d.Hours()))
-	}
-
-	return fmt.Sprintf("%dd", int(d.Hours()/24))
 }

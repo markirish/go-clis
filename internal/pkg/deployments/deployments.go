@@ -1,16 +1,16 @@
-package nodes
+package deployments
 
 import "time"
 
-type GetNodesOptions struct {
+type GetDeploymentsOptions struct {
 	Namespace     string
 	Timeout       time.Duration
 	GlobalTimeout time.Duration
 	Verbose       bool
 	Filter        string
 	SortBy        string
-	Node          string
-	NotReady      bool
+	Unavailable   bool
+	MinReplicas   uint
 	// These fields should be handled at a higher level between the CLI and the
 	// internal package, as they are more about output formatting and behavior
 	// rather than pod-specific options
@@ -19,7 +19,7 @@ type GetNodesOptions struct {
 	// Wide   bool
 }
 
-func GetNodes(options GetNodesOptions) {
+func GetDeployments(options GetDeploymentsOptions) {
 	// Placeholder for actual implementation
 
 }

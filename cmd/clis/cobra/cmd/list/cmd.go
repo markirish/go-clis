@@ -2,7 +2,6 @@ package list
 
 import (
 	. "github.com/markirish/go-clis/cmd/clis/cobra/cmd/list/pods"
-	. "github.com/markirish/go-clis/cmd/clis/cobra/cmd/list/services"
 	. "github.com/markirish/go-clis/internal/app/options"
 	"github.com/spf13/cobra"
 )
@@ -31,7 +30,6 @@ on specific criteria.`,
 
 	// Register subcommands
 	cmd.AddCommand(NewListPodsCmd(globalOptions, listOpts))
-	cmd.AddCommand(NewListServicesCmd(globalOptions, listOpts))
 
 	return cmd
 }
